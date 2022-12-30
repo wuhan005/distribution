@@ -3,6 +3,7 @@
 package distribution
 
 import (
+	"bytes"
 	"fmt"
 	"io"
 	"os"
@@ -49,7 +50,7 @@ func Test_NewDistribution(t *testing.T) {
 	require.Nil(t, err)
 	gotOutput, err := exec.Command(f.Name()).Output()
 	require.Nil(t, err)
-	require.Equal(t, output, string(gotOutput))
+	require.Equal(t, output, string(bytes.TrimSpace(gotOutput)))
 }
 
 func Test_ParseFromDistribution(t *testing.T) {
